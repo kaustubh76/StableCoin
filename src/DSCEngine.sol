@@ -81,7 +81,7 @@ contract DSCEngine is ReentrancyGuard {
 
     /// @dev Mapping of token address to price feed address
     mapping(address collateralToken => address priceFeed) private s_priceFeeds;
-    /// @dev Amount of collateral deposited by user
+    /// @dev Amount of collateral deposited by user 
     mapping(address user => mapping(address collateralToken => uint256 amount)) private s_collateralDeposited;
     /// @dev Amount of DSC minted by user
     mapping(address user => uint256 amount) private s_DSCMinted;
@@ -353,7 +353,9 @@ contract DSCEngine is ReentrancyGuard {
         uint256 collateralAdjustedForThreshold = (collateralValueInUsd * LIQUIDATION_THRESHOLD) / LIQUIDATION_PRECISION;
         return (collateralAdjustedForThreshold * PRECISION) / totalDscMinted;
     }
-
+    
+    // 1. Check Health Factor (do they have enough collateral to cover their debt?)
+    // 2. Revert if Health Factor is broken 
     function revertIfHealthFactorIsBroken(address user) internal view {
         uint256 userHealthFactor = _healthFactor(user);
         if (userHealthFactor < MIN_HEALTH_FACTOR) {

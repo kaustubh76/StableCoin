@@ -1,5 +1,7 @@
 # Foundry DeFi Stablecoin
 
+This is a section of the Cyfrin Foundry Solidity Course.
+
 [DSCEngine Example](https://sepolia.etherscan.io/address/0x091ea0838ebd5b7dda2f2a641b068d6d59639b98#code)
 [Decentralized Stablecoin Example](https://sepolia.etherscan.io/address/0xf30021646269007b0bdc0763fd736c6380602f2f#code)
 
@@ -12,6 +14,7 @@ This project is meant to be a stablecoin where users can deposit WETH and WBTC i
 - [Getting Started](#getting-started)
   - [Requirements](#requirements)
   - [Quickstart](#quickstart)
+    - [Optional Gitpod](#optional-gitpod)
 - [Updates](#updates)
 - [Usage](#usage)
   - [Start a local node](#start-a-local-node)
@@ -24,6 +27,9 @@ This project is meant to be a stablecoin where users can deposit WETH and WBTC i
   - [Estimate gas](#estimate-gas)
 - [Formatting](#formatting)
 - [Slither](#slither)
+- [Additional Info:](#additional-info)
+  - [Let's talk about what "Official" means](#lets-talk-about-what-official-means)
+  - [Summary](#summary)
 - [Thank you!](#thank-you)
 
 # Getting Started
@@ -38,10 +44,16 @@ This project is meant to be a stablecoin where users can deposit WETH and WBTC i
 ## Quickstart
 
 ```
-git clone https://github.com/Cyfrin/foundry-defi-stablecoin
-cd foundry-defi-stablecoin
+git clone https://github.com/Cyfrin/foundry-defi-stablecoin-cu
+cd foundry-defi-stablecoin-cu
 forge build
 ```
+
+### Optional Gitpod
+
+If you can't or don't want to run and install locally, you can work with this repo in Gitpod. If you do this, you can skip the `clone this repo` part.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#github.com/PatrickAlphaC/foundry-smart-contract-lottery-cu)
 
 # Updates
 
@@ -163,5 +175,22 @@ forge fmt
 ```
 slither :; slither . --config-file slither.config.json
 ```
+
+# Additional Info:
+Some users were having a confusion that whether Chainlink-brownie-contracts is an official Chainlink repository or not. Here is the info.
+Chainlink-brownie-contracts is an official repo. The repository is owned and maintained by the chainlink team for this very purpose, and gets releases from the proper chainlink release process. You can see it's still the `smartcontractkit` org as well.
+
+https://github.com/smartcontractkit/chainlink-brownie-contracts
+
+## Let's talk about what "Official" means
+The "official" release process is that chainlink deploys it's packages to [npm](https://www.npmjs.com/package/@chainlink/contracts). So technically, even downloading directly from `smartcontractkit/chainlink` is wrong, because it could be using unreleased code.
+
+So, then you have two options:
+
+1. Download from NPM and have your codebase have dependencies foreign to foundry
+2. Download from the chainlink-brownie-contracts repo which already downloads from npm and then packages it nicely for you to use in foundry.
+## Summary
+1. That is an official repo maintained by the same org
+2. It downloads from the official release cycle `chainlink/contracts` use (npm) and packages it nicely for digestion from foundry.
 
 # Thank you!
